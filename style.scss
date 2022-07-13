@@ -1,0 +1,28 @@
+@function random-hex() {
+    $color:"#";
+    @for $i from 1 through 6 {
+        $carattere: random(16) - 1;
+        @if ($carattere > 9) {
+           $lettere: A, B, C, D, E, F;
+           $carattere: calc($carattere - 9);
+           $carattere: nth($lettere, $carattere);
+
+        }
+        $color: $color + $carattere;
+    }
+    @return unquote($color);
+}
+
+.col{
+    border: 1px solid;
+    height: 200px;
+    background-color: random-hex();
+}
+.col:nth-child(1){
+    background-color: random-hex();
+}
+@for $i from 1 through 12 {
+    .col:nth-child(#{$i}){
+        background-color: random-hex();
+    }
+}
